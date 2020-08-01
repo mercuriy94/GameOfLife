@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import com.mercuriy94.gameoflife.presentation.feature.main.LIFE_SIZE
 import kotlin.random.Random
 
 /**
@@ -21,21 +22,10 @@ class GameOfLifeView @JvmOverloads constructor(
     companion object {
 
         private const val POINT_RADIUS = 16f
-        private const val LIFE_SIZE = 60
     }
 
     private var array: FloatArray? = null
-    private val lifeGeneration = Array(LIFE_SIZE) { BooleanArray(
-        LIFE_SIZE
-    ) }
-
-    init {
-
-    }
-
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-    }
+    private val lifeGeneration = Array(LIFE_SIZE) { BooleanArray(LIFE_SIZE) }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
@@ -74,7 +64,13 @@ class GameOfLifeView @JvmOverloads constructor(
             lifeGeneration.forEachIndexed { x, column ->
                 column.forEachIndexed { y, isAlive ->
                     if (isAlive) {
-                        drawOval(x * POINT_RADIUS, y * POINT_RADIUS, x * POINT_RADIUS + POINT_RADIUS, y * POINT_RADIUS + POINT_RADIUS, linePaint)
+                        drawOval(
+                            x * POINT_RADIUS,
+                            y * POINT_RADIUS,
+                            x * POINT_RADIUS + POINT_RADIUS,
+                            y * POINT_RADIUS + POINT_RADIUS,
+                            linePaint
+                        )
                     }
                 }
             }
@@ -82,19 +78,9 @@ class GameOfLifeView @JvmOverloads constructor(
         }
     }
 
-    fun fill() {
-        for (x in 0 until LIFE_SIZE) {
-            for (y in 0 until LIFE_SIZE) {
-                lifeGeneration[x][y] = Random.nextBoolean()
-            }
-        }
-
+    fun fill(lifeField: Array<BooleanArray>) {
+        System.arraycopy(lifeField, 0, lifeGeneration, 0, lifeField.size)
         invalidate()
     }
 
-    fun start() {
-    }
-
-    fun stop() {
-    }
 }

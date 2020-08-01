@@ -6,8 +6,13 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
+import com.badoo.mvicore.ModelWatcher
+import com.badoo.mvicore.modelWatcher
 import com.mercuriy94.gameoflife.databinding.ActivityMainBinding
 import com.mercuriy94.gameoflife.presentation.base.BaseActivity
+import ru.inmoso.core.ui.events.EventObserver
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
@@ -24,11 +29,40 @@ class MainActivity : BaseActivity() {
         setSupportActionBar(viewBinding.toolbar)
 
         viewBinding.btnFill.setOnClickListener {
-            viewBinding.gameOfLifeView.fill()
+            viewModel.uiEvent(FillFieldUiEvent)
         }
 
         viewBinding.btnStart.setOnClickListener {
-            viewBinding.gameOfLifeView.start()
+            viewModel.uiEvent(StartUiEvent)
         }
+
+        viewBinding.btnStep.setOnClickListener {
+            viewModel.uiEvent(StepUiEvent)
+        }
+
+        viewBinding.btnPause.setOnClickListener {
+            viewModel.uiEvent(PauseUiEvent)
+        }
+
+        val watcher = modelWatcher<MainViewState> {
+
+            MainViewState::lifeField {
+                viewBinding.gameOfLifeView.fill(it)
+            }
+
+            MainViewState::isStartVisible {
+                viewBinding.btnStart.isVisible = it
+            }
+
+            MainViewState::isPauseVisible {
+                viewBinding.btnPause.isVisible = it
+            }
+
+        }
+
+        viewModel.viewState.observe(this, Observer { state ->
+            watcher.invoke(state)
+        })
+
     }
 }

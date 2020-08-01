@@ -54,4 +54,15 @@ dependencies {
     kapt 'com.google.dagger:dagger-android-processor:2.27'
     implementation 'com.google.dagger:dagger-android-support:2.27'
 
+    //rx
+    implementation RxDeps.rxRelay2
+    implementation RxDeps.rxKotlin
+    implementation RxDeps.rxJava2
+    implementation RxDeps.rxAndroid
+    implementation RxDeps.rxBinding
+
+    //mvi
+    implementation LibrariesDeps.mviCoreDiff
+
+
 }

@@ -13,4 +13,5 @@ class GameOfLifeApp : DaggerApplication() {
         DaggerGameOfLifeAppComponent
             .factory()
             .create(this)
+
 }
