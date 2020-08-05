@@ -1,0 +1,11 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+description("""Модуль содержит бизнес логику управления игрой жизнь.""")
+
+dependencies {
+    implementation KotlinDeps.kotlin
+    implementation RxDeps.rxJava2
+    implementation RxDeps.rxKotlin
+    implementation DI.inject
+}

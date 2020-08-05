@@ -1,0 +1,22 @@
+apply from: "$rootDir/android_config.gradle"
+apply plugin: 'kotlin-kapt'
+
+android {
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation UtilsDeps.timber
+    implementation DI.inject
+    implementation AndroidDeps.appcompat
+    implementation AndroidDeps.design
+    implementation LifecycleDeps.viewModel
+    implementation RxDeps.rxJava2
+    implementation RxDeps.rxKotlin
+    implementation RxDeps.rxAndroid
+    implementation DI.daggerRuntime
+    kapt DI.daggerCompiler
+    implementation NavigationDeps.runtime
+}

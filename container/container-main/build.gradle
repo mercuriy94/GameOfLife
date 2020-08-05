@@ -1,0 +1,27 @@
+apply from: "$rootDir/container/base_container_config.gradle"
+
+dependencies {
+
+    //flow
+    implementation project(FlowsDeps.main)
+
+    //core
+    implementation project(CommonDeps.ui)
+    implementation project(CommonDeps.di)
+    implementation project(CommonDeps.domain)
+
+    //di
+    implementation DI.daggerRuntime
+    kapt DI.daggerCompiler
+
+    //insets
+    implementation Insetter.lib
+    implementation Insetter.ktx
+
+    //navigation
+    implementation project(CommonDeps.navigation)
+    implementation NavigationDeps.runtime
+    implementation NavigationDeps.fragmentKtx
+    implementation NavigationDeps.uiKtx
+
+}

@@ -1,5 +1,6 @@
 object Versions {
     const val kotlin = "1.3.72"
+    const val fragment = "1.2.5"
     const val multidex = "2.0.1"
     const val dagger = "2.27"
     const val materialDesign = "1.1.0"
@@ -11,7 +12,7 @@ object Versions {
     const val loggingInterceptor = "3.0.0"
     const val timber = "4.7.1"
     const val glide = "4.9.0"
-    const val ktx = "1.2.0"
+    const val ktx = "1.3.1"
     const val viewModelKtx = "2.2.0"
     const val adapterDelegateKotlinDsl = "4.2.0"
     const val androidCommon = "26.5.3"
@@ -22,7 +23,7 @@ object Versions {
     const val progressButton = "2.0.0"
     const val awesomeValidation = "v4.2"
     const val toasty = "1.4.2"
-    const val navigation = "2.3.0-alpha06"
+    const val navigation = "2.3.0"
     const val junit = "4.12"
     const val mockitoCore = "3.1.0"
     const val mockitoKotlin = "2.2.0"
@@ -51,4 +52,5 @@ object Versions {
     const val swipeRefreshLayout = "1.0.0"
     const val permissionsDispatcher = "4.7.0"
     const val insetter = "0.2.2"
+    const val leakcanary = "2.3"
 }

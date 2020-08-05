@@ -1,0 +1,36 @@
+apply from: "$rootDir/feature/base_feature.gradle"
+
+dependencies {
+
+    //Android
+    implementation AndroidDeps.constraintLayout
+    implementation AndroidDeps.design
+
+    //core
+    implementation project(CommonDeps.ui)
+    implementation project(CommonDeps.mvi)
+    implementation project(CommonDeps.di)
+    implementation project(CommonDeps.domain)
+
+    //rx
+    implementation RxDeps.rxJava2
+    implementation RxDeps.rxKotlin
+
+    //di
+    implementation DI.daggerRuntime
+    kapt DI.daggerCompiler
+
+    //mvi
+    implementation LibrariesDeps.mviCoreDiff
+
+    //insets
+    implementation Insetter.lib
+    implementation Insetter.ktx
+
+    //ktx
+    implementation KtxDeps.core
+
+    //widget
+    implementation project(WidgetDeps.lifeField)
+
+}

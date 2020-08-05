@@ -1,0 +1,11 @@
+apply from: "$rootDir/android_config.gradle"
+
+dependencies {
+    implementation AndroidDeps.fragment
+    implementation project(CommonDeps.ui)
+    implementation project(CommonDeps.navigation)
+    implementation NavigationDeps.uiKtx
+    implementation NavigationDeps.fragmentKtx
+    implementation LifecycleDeps.viewModel
+    implementation DI.inject
+}

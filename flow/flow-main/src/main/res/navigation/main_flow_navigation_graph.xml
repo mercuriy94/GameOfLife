@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_flow_navigation_graph"
+    app:startDestination="@id/lifeFragment">
+
+    <fragment
+        android:id="@+id/lifeFragment"
+        android:name="com.mercuriy94.gameoflife.feature.life.presentation.LifeFragment"
+        android:label="Game of Life"
+        tools:layout="@layout/life_fragment_layout" />
+
+</navigation>

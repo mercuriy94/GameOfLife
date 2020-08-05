@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="color_primary">#ffb300</color>
+    <color name="color_primary_dark">#faaf00</color>
+    <color name="color_accent">@color/color_primary</color>
+
+    <color name="system_ui_scrim_light">#e3ffffff</color>
+    <color name="system_ui_scrim_dark">#40000000</color>
+
+    <color name="status_bar_scrim">@color/system_ui_scrim_dark</color>
+    <color name="nav_bar_scrim">@color/status_bar_scrim</color>
+
+    <color name="bottom_bar_color">#f2ffffff</color>
+
+    <color name="background_color">#fff</color>
+
+    <color name="color_light_black">#333333</color>
+    <color name="color_second_text">#757575</color>
+
+    <color name="color_divider">#ebebeb</color>
+    <color name="color_selected_item">#4dffb300</color>
+
+    <color name="color_control_highlight">@color/color_accent</color>
+
+    <color name="toolbar_color">#e6ffb300</color>
+    <color name="toolbar_title_color">#000</color>
+    <color name="toolbar_control_color">#000</color>
+    <color name="toolbar_control_highlight_color">#fff</color>
+
+    <color name="toolbar_light_color">@color/status_bar_scrim</color>
+    <color name="toolbar_control_highlight_color_light">@color/color_accent</color>
+
+    <color name="dialog_background">#fff</color>
+
+    <color name="btn_action_background_enabled_color">#333333</color>
+    <color name="btn_action_background_disabled_color">#d7d7d7</color>
+
+    <color name="btn_action_text_enabled_color">@android:color/white</color>
+    <color name="btn_action_text_disabled_color">@android:color/white</color>
+
+    <color name="btn_action_press_ripple_color">@android:color/white</color>
+
+    <color name="text_url_link_color">#1a73e8</color>
+
+    <color name="color_highlight_btn_action_transparent">#ebebeb</color>
+
+    <color name="edit_text_disabled_color">#80757575</color>
+    <color name="edit_text_enabled_color">#ffb300</color>
+    <color name="edit_text_hovered_color">#DEffb300</color>
+    <color name="edit_text_color">#b3ffb300</color>
+    <color name="search_color_control">#a1a1a1</color>
+
+    <color name="btn_action_logout_color">#e64646</color>
+
+    <color name="icon_gery_color">#676b70</color>
+</resources>

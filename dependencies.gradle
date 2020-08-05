@@ -1,0 +1,10 @@
+ext {
+    javaVersion = "1.8"
+}
+
+ext.sdk = [
+        compile   : 29,
+        target    : 29,
+        buildTools: "29.0.3",
+        min       : 21
+]

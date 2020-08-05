@@ -1,0 +1,32 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion sdk.compile
+    buildToolsVersion sdk.buildTools
+
+    defaultConfig {
+        minSdkVersion sdk.min
+        targetSdkVersion sdk.target
+        vectorDrawables.useSupportLibrary = true
+
+    }
+
+    compileOptions {
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation KotlinDeps.kotlin
+}

@@ -1,2 +1,13 @@
-include ':app'
 rootProject.name = "GameOfLife"
+
+include ':app',
+        ':container:container-main',
+        ':common:core-domain',
+        ':common:core-di',
+        ':common:core-ui',
+        ':common:core-mvi',
+        ':common:core-flow',
+        ':common:core-navigation',
+        ':flow:flow-main',
+        ':feature:feature-life',
+        ':widget:widget-life'

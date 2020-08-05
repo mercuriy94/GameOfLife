@@ -1,0 +1,31 @@
+apply from: "$rootDir/android_config.gradle"
+
+android {
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    //base
+    implementation AndroidDeps.fragment
+    implementation project(CommonDeps.ui)
+    implementation KtxDeps.core
+
+    //lifecycle
+    implementation LifecycleDeps.livedata
+    implementation LifecycleDeps.viewModel
+
+    //rx
+    implementation RxDeps.rxRelay2
+    implementation RxDeps.rxKotlin
+    implementation RxDeps.rxJava2
+
+    //mvi
+    implementation LibrariesDeps.mviCoreDiff
+
+    //navigation
+    implementation NavigationDeps.runtime
+
+}

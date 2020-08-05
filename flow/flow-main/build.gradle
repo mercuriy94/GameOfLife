@@ -1,0 +1,20 @@
+apply from: "$rootDir/flow/base_flow.gradle"
+
+dependencies {
+    //feature
+    implementation project(FeatureDeps.life)
+
+    //common
+    implementation project(CommonDeps.ui)
+    implementation project(CommonDeps.di)
+    implementation project(CommonDeps.domain)
+
+    //di
+    implementation DI.daggerRuntime
+    kapt DI.daggerCompiler
+
+    //navigation
+    implementation project(CommonDeps.navigation)
+    implementation NavigationDeps.runtime
+    implementation NavigationDeps.fragmentKtx
+}
