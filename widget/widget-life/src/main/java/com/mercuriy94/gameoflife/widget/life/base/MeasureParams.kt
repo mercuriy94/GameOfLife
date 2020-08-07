@@ -1,16 +1,15 @@
 package com.mercuriy94.gameoflife.widget.life.base
 
-import android.view.View
-import kotlin.math.min
+import android.graphics.RectF
 
 /**
  * @author Nikita Marsyukov
  */
 data class MeasureParams(
-    val widthMeasureSpec: Int,
-    val heightMeasureSpec: Int,
-    val contentWidth: Float,
-    val contentHeight: Float,
+    val desiredHeight: Float,
+    val desiredWidth: Float,
+    val width: Int,
+    val height: Int,
     val maxScaleFactor: Float,
     val midScaleFactor: Float,
     val minScaleFactor: Float

@@ -8,7 +8,6 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import com.mercuriy94.gameoflife.widget.life.base.*
-import kotlin.math.roundToInt
 
 
 /**
@@ -37,7 +36,7 @@ class LifeFieldView @JvmOverloads constructor(
     private var midScaleFactor = 0f
 
     private lateinit var measureData: MeasureData
-    private lateinit var matrixScaleType2: MatrixScaleType
+    private lateinit var matrixScaleType: MatrixScaleType
     private val fieldMatrix = Matrix()
 
     private var touchHelper = ImageTouchHelper(this)
@@ -55,33 +54,48 @@ class LifeFieldView @JvmOverloads constructor(
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-        val measureParams = MeasureParams(
-            widthMeasureSpec = widthMeasureSpec,
-            heightMeasureSpec = heightMeasureSpec,
-            minScaleFactor = minScaleFactor,
-            midScaleFactor = midScaleFactor,
-            maxScaleFactor = maxScaleFactor,
-            contentWidth = POINT_RADIUS * LIFE_SIZE,
-            contentHeight = POINT_RADIUS * LIFE_SIZE
+        val desiredWidth = (POINT_RADIUS * LIFE_SIZE)
+        val desiredHeight = (POINT_RADIUS * LIFE_SIZE)
+
+        val resolvedWidth = resolveSize(desiredWidth.toInt(), widthMeasureSpec)
+        val resolvedHeight = resolveSize(desiredHeight.toInt(), heightMeasureSpec)
+
+        val measureParams = collectMeasureParams(
+            resolvedWidth,
+            desiredWidth,
+            resolvedHeight,
+            desiredHeight
         )
 
-        matrixScaleType2 = MatrixScaleType.FIT_START
+        matrixScaleType = MatrixScaleType.FIT_START
 
-        measureData = matrixScaleType2.measure(measureParams)
-
-        var measuredWidth = measureData.measuredWidth.roundToInt()
-        var measuredHeight = measureData.measuredHeight.roundToInt()
-
-        measuredWidth = if (measuredWidth >= 0) measuredWidth else 0
-        measuredHeight = if (measuredHeight >= 0) measuredHeight else 0
-        setMeasuredDimension(measuredWidth, measuredHeight)
+        measureData = matrixScaleType.measure(measureParams)
 
         val matrix = Matrix()
-        matrix.postScale(measureData.estimatedMinScaleX, measureData.estimatedMinScaleY)
+
+        matrix.postScale(measureData.estimatedMinScaleFactorX, measureData.estimatedMinScaleFactorY)
         matrix.postTranslate(measureData.transX, measureData.transY)
         setMatrix(matrix)
 
+        setMeasuredDimension(resolvedWidth, resolvedHeight)
+
     }
+
+    private fun collectMeasureParams(
+        resolvedWidth: Int,
+        desiredWidth: Float,
+        resolvedHeight: Int,
+        desiredHeight: Float
+    ): MeasureParams =
+        MeasureParams(
+            width = resolvedWidth,
+            desiredWidth = desiredWidth,
+            height = resolvedHeight,
+            desiredHeight = desiredHeight,
+            minScaleFactor = minScaleFactor,
+            midScaleFactor = midScaleFactor,
+            maxScaleFactor = maxScaleFactor
+        )
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
@@ -139,7 +153,6 @@ class LifeFieldView @JvmOverloads constructor(
         }
     }
 
-
     fun fill(lifeField: Array<BooleanArray>) {
         lifeField.forEachIndexed { index, array -> array.copyInto(lifeGeneration[index]) }
         invalidate()
@@ -151,7 +164,6 @@ class LifeFieldView @JvmOverloads constructor(
     private fun setMatrix(matrix: Matrix) {
         if (fieldMatrix != matrix) {
             fieldMatrix.set(matrix)
-            MatrixScaleType.printMatrixValues(fieldMatrix)
             invalidate()
         }
     }

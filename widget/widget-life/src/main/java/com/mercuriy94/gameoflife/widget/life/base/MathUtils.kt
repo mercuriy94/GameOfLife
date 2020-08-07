@@ -12,7 +12,7 @@ const val ROUND_DEFAULT_SCALE_FLOAT: Int = 5
  * @param scale кол-во цифр для округления;
  * @return округлённое число;
  */
-fun roundFloat(value: Float, scale: Int): Float {
+fun roundFloat(value: Float, scale: Int = ROUND_DEFAULT_SCALE_FLOAT): Float {
     var pow = 10
     for (i in 1 until scale) pow *= 10
     val tmp = value * pow
