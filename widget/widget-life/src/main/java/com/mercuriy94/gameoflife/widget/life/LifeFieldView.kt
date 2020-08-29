@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import com.mercuriy94.gameoflife.widget.life.base.*
+import kotlin.math.max
 
 
 /**
@@ -52,22 +53,26 @@ class LifeFieldView @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-        val desiredWidth = (POINT_RADIUS * LIFE_SIZE)
-        val desiredHeight = (POINT_RADIUS * LIFE_SIZE)
+        val pintRadius = POINT_RADIUS.toInt()
+        val desiredWidth = (pintRadius * LIFE_SIZE) + paddingStart + paddingEnd
+        val desiredHeight = (pintRadius * LIFE_SIZE) + paddingTop + paddingBottom
 
-        val resolvedWidth = resolveSize(desiredWidth.toInt(), widthMeasureSpec)
-        val resolvedHeight = resolveSize(desiredHeight.toInt(), heightMeasureSpec)
+        val resolvedWidth =
+            max(resolveSizeAndState(desiredWidth, widthMeasureSpec, 0), suggestedMinimumWidth)
+        val resolvedHeight =
+            max(resolveSizeAndState(desiredHeight, heightMeasureSpec, 0), suggestedMinimumHeight)
 
         val measureParams = collectMeasureParams(
-            resolvedWidth,
-            desiredWidth,
-            resolvedHeight,
-            desiredHeight
+            widthMeasureSpec = widthMeasureSpec,
+            heightMeasureSpec = heightMeasureSpec,
+            resolvedWidth = resolvedWidth,
+            desiredWidth = desiredWidth,
+            resolvedHeight = resolvedHeight,
+            desiredHeight = desiredHeight
         )
 
-        matrixScaleType = MatrixScaleType.FIT_START
+        matrixScaleType = MatrixScaleType.FIT_CENTER
 
         measureData = matrixScaleType.measure(measureParams)
 
@@ -78,30 +83,40 @@ class LifeFieldView @JvmOverloads constructor(
         setMatrix(matrix)
 
         setMeasuredDimension(resolvedWidth, resolvedHeight)
-
     }
 
     private fun collectMeasureParams(
+        widthMeasureSpec: Int,
+        heightMeasureSpec: Int,
         resolvedWidth: Int,
-        desiredWidth: Float,
+        desiredWidth: Int,
         resolvedHeight: Int,
-        desiredHeight: Float
+        desiredHeight: Int
     ): MeasureParams =
         MeasureParams(
-            width = resolvedWidth,
+            widthMeasureSpec = widthMeasureSpec,
+            heightMeasureSpec = heightMeasureSpec,
+            resolvedWidth = resolvedWidth,
             desiredWidth = desiredWidth,
-            height = resolvedHeight,
+            resolvedHeight = resolvedHeight,
             desiredHeight = desiredHeight,
             minScaleFactor = minScaleFactor,
             midScaleFactor = midScaleFactor,
-            maxScaleFactor = maxScaleFactor
+            maxScaleFactor = maxScaleFactor,
+            paddingLeft = paddingLeft,
+            paddingTop = paddingTop,
+            paddingRight = paddingRight,
+            paddingBottom = paddingBottom
         )
+
+    override fun layout(l: Int, t: Int, r: Int, b: Int) {
+        super.layout(l, t, r, b)
+    }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
 
         //Подготовить массив линий для рисования сетки
-
         //Рассчитываем размер массива, где каждые 4 элемента массива соответсвуют координатам одной линии (x0, y0, x1, y1)
         val size = (LIFE_SIZE + 1) * 8
         array = FloatArray(size).also { array ->

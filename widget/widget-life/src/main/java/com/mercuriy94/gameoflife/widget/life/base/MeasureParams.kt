@@ -6,11 +6,17 @@ import android.graphics.RectF
  * @author Nikita Marsyukov
  */
 data class MeasureParams(
-    val desiredHeight: Float,
-    val desiredWidth: Float,
-    val width: Int,
-    val height: Int,
+    val widthMeasureSpec: Int,
+    val heightMeasureSpec: Int,
+    val desiredHeight: Int,
+    val desiredWidth: Int,
+    val resolvedWidth: Int,
+    val resolvedHeight: Int,
     val maxScaleFactor: Float,
     val midScaleFactor: Float,
-    val minScaleFactor: Float
+    val minScaleFactor: Float,
+    val paddingLeft: Int,
+    val paddingTop: Int,
+    val paddingRight: Int,
+    val paddingBottom: Int
 )
