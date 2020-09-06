@@ -3,8 +3,8 @@ ext {
 }
 
 ext.sdk = [
-        compile   : 29,
-        target    : 29,
-        buildTools: "29.0.3",
+        compile   : 30,
+        target    : 30,
+        buildTools: "30.0.2",
         min       : 21
 ]

@@ -26,7 +26,7 @@ import kotlin.random.Random
  */
 class GameOfLifeInteractor @Inject constructor() {
 
-    private val LIFE_SIZE = 700
+    private val LIFE_SIZE = 300
 
     /**
      * Синхронизатор.

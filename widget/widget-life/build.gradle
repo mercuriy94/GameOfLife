@@ -33,5 +33,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation KotlinDeps.kotlin
     implementation AndroidDeps.appcompat
+    implementation "androidx.dynamicanimation:dynamicanimation-ktx:1.0.0-alpha03"
 
 }
